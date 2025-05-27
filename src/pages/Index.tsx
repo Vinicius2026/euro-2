@@ -220,6 +220,19 @@ const Index = () => {
           100% { transform: rotate(360deg); }
         }
         
+        @keyframes tv-flicker {
+          0%, 100% { opacity: 1; filter: none; }
+          10% { opacity: 0.95; filter: blur(0.2px); }
+          20% { opacity: 0.98; filter: brightness(1.05); }
+          30% { opacity: 0.92; filter: blur(0.3px); }
+          40% { opacity: 1; filter: none; }
+          50% { opacity: 0.97; filter: brightness(1.1); }
+          60% { opacity: 0.93; filter: blur(0.1px); }
+          70% { opacity: 1; filter: none; }
+          80% { opacity: 0.96; filter: brightness(0.98); }
+          90% { opacity: 1; filter: none; }
+        }
+        
         .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
         .animate-float-reverse { animation: float-reverse 10s ease-in-out infinite; }
         .animate-float-fast { animation: float-fast 6s ease-in-out infinite; }
@@ -252,6 +265,7 @@ const Index = () => {
         .animate-bounce-gentle { animation: bounce-gentle 3s ease-in-out infinite; }
         .animate-cosmic-glow { animation: cosmic-glow 8s ease-in-out infinite; }
         .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+        .animate-tv-flicker { animation: tv-flicker 1.2s infinite steps(2); }
       `}</style>
 
       {/* HERO SECTION SÓBRIO E TECH COM ANIMAÇÃO DE BACKGROUND */}
@@ -325,33 +339,51 @@ const Index = () => {
             (e como <span className="text-white font-semibold">você</span> pode copiar e colar, mesmo saindo do zero)
           </p>
 
-          {/* Cards de Data/Hora padronizados */}
-          <div className="flex justify-center gap-5 mb-8 flex-wrap">
+          {/* Cards de Data/Hora padronizados e menores, com transparência e efeito especial no 'Ao Vivo' */}
+          <div className="flex justify-center gap-3 mb-8 flex-wrap">
             {[
-              { icon: CalendarIcon, text: '10 de Junho', label: 'Data' },
-              { icon: ClockIcon, text: '20:03h', label: 'Hora' },
-              { icon: YoutubeIcon, text: 'Ao Vivo', label: 'Transmissão' }
+              { icon: CalendarIcon, text: '10 de Junho', label: 'Data', transparent: true },
+              { icon: ClockIcon, text: '20:03h', label: 'Hora', transparent: true },
+              { icon: YoutubeIcon, text: 'Ao Vivo', label: 'Transmissão', tvEffect: true }
             ].map((item, i) => (
               <div
                 key={i}
-                className="
-                  flex flex-col items-center justify-center
-                  w-40 h-32
-                  bg-gradient-to-b from-neutral-900/90 to-neutral-800/80
-                  border border-red-500/30
-                  rounded-2xl
-                  shadow-lg
-                  transition-all duration-300
-                  hover:border-red-400/60 hover:shadow-red-500/10
-                  group
-                "
-                style={{ minWidth: 150, minHeight: 110 }}
+                className={
+                  `flex flex-col items-center justify-center w-28 h-20 rounded-xl shadow-md transition-all duration-300 group border ` +
+                  (item.tvEffect
+                    ? 'bg-black/40 border-red-500/40 relative overflow-hidden' // TV effect box
+                    : 'bg-neutral-900/40 border-red-500/20') // Transparent boxes
+                }
+                style={{ minWidth: 90, minHeight: 60 }}
               >
-                <span className="mb-2">
+                <span className={
+                  (item.tvEffect ? 'animate-tv-flicker' : '') + ' mb-1'}
+                  style={{ opacity: item.transparent ? 0.7 : 1 }}
+                >
                   <item.icon />
                 </span>
-                <span className="text-lg font-bold text-white mb-1">{item.text}</span>
-                <span className="text-xs text-gray-400 tracking-wide">{item.label}</span>
+                <span className={
+                  `text-[0.95rem] font-semibold mb-0.5 ` +
+                  (item.tvEffect ? 'text-red-400' : 'text-white')
+                }
+                  style={{ opacity: item.transparent ? 0.7 : 1 }}
+                >
+                  {item.text}
+                </span>
+                <span className="text-[0.65rem] text-gray-400 tracking-wide" style={{ opacity: item.transparent ? 0.6 : 1 }}>{item.label}</span>
+                {/* Efeito TV minimalista */}
+                {item.tvEffect && (
+                  <>
+                    <div className="absolute inset-0 pointer-events-none" style={{
+                      background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.04) 4px, transparent 6px)',
+                      opacity: 0.5
+                    }} />
+                    <div className="absolute inset-0 pointer-events-none animate-tv-flicker" style={{
+                      background: 'linear-gradient(90deg, transparent 80%, rgba(255,255,255,0.08) 100%)',
+                      opacity: 0.3
+                    }} />
+                  </>
+                )}
               </div>
             ))}
           </div>
