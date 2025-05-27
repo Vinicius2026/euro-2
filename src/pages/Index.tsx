@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 // SVGs com animações avançadas
 const CalendarIcon = () => (
@@ -764,9 +764,9 @@ const Index = () => {
             Depois que você sair do Facebook, a responsabilidade não é deles e sim do nosso site.
           </p>
           <div className="flex justify-end mt-8">
-            <a href="/admin" className="px-4 py-1 rounded-full text-xs font-semibold bg-white/10 text-white border border-white/10 hover:bg-white/20 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400/30">
+            <Link to="/admin" className="px-4 py-1 rounded-full text-xs font-semibold bg-white/10 text-white border border-white/10 hover:bg-white/20 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400/30">
               EleA
-            </a>
+            </Link>
           </div>
         </div>
       </footer>
