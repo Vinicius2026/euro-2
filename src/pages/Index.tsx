@@ -344,13 +344,15 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center mb-8">
             <button
               onClick={() => navigate('/login')}
-              className="w-full sm:w-auto bg-neutral-900 border border-red-500/40 hover:bg-red-700 hover:border-red-500 transition-colors text-white font-bold text-lg px-8 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-400"
+              className="w-full sm:w-auto bg-black/60 backdrop-blur-md border border-white/20 hover:border-white/40 text-white font-semibold text-lg px-8 py-3 rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors font-[Inter,sans-serif]"
+              style={{ fontFamily: 'Inter, Montserrat, sans-serif', fontWeight: 600 }}
             >
               Login
             </button>
             <button
               onClick={() => navigate('/register')}
-              className="w-full sm:w-auto bg-red-600 hover:bg-red-700 transition-colors text-white font-bold text-lg px-8 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-400"
+              className="w-full sm:w-auto bg-black/60 backdrop-blur-md border border-white/20 hover:border-white/40 text-white font-semibold text-lg px-8 py-3 rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors font-[Inter,sans-serif]"
+              style={{ fontFamily: 'Inter, Montserrat, sans-serif', fontWeight: 600 }}
             >
               Cadastro
             </button>
