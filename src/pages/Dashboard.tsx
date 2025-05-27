@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Lock, CalendarDays, Gift, DollarSign, Library, Wrench, LogOut, ChevronRight, PlayCircle, Menu, X } from 'lucide-react'; // Ícones, PlayCircle adicionado, Menu e X para menu mobile
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion'; // Para animações leves no quiz
 
 const initialMenuItems = [
   { id: 'dia10', text: 'Dia 10/06 AO VIVO', icon: <CalendarDays size={18} />, available: true, locked: false },
@@ -18,6 +19,35 @@ const Dashboard = () => {
   const [activeContent, setActiveContent] = useState('dia10');
   const [menuItems, setMenuItems] = useState(initialMenuItems);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [quizStep, setQuizStep] = useState(0);
+  const [quizAnswers, setQuizAnswers] = useState({ q1: '', q2: '', q3: '' });
+  const quizQuestions = [
+    {
+      question: 'Já vendeu drop ou cod fora do Brasil?',
+      options: [
+        { label: 'Sim', value: 'sim' },
+        { label: 'Não', value: 'nao' },
+      ],
+      key: 'q1',
+    },
+    {
+      question: 'Qual seu nível de experiência de Marketing.',
+      options: [
+        { label: '1', value: '1' },
+        { label: '2', value: '2' },
+        { label: '3', value: '3' },
+      ],
+      key: 'q2',
+    },
+    {
+      question: 'Já fez alguma loja na Shopify?',
+      options: [
+        { label: 'Sim', value: 'sim' },
+        { label: 'Não', value: 'nao' },
+      ],
+      key: 'q3',
+    },
+  ];
 
   // Impede scroll do body quando menu mobile está aberto
   useEffect(() => {
@@ -36,6 +66,14 @@ const Dashboard = () => {
     } catch (error) {
       console.error("Failed to log out:", error);
     }
+  };
+
+  const handleQuiz = (value: string) => {
+    const key = quizQuestions[quizStep].key;
+    setQuizAnswers((prev) => ({ ...prev, [key]: value }));
+    setTimeout(() => {
+      setQuizStep((prev) => prev + 1);
+    }, 200);
   };
 
   if (!currentUser) {
@@ -91,25 +129,28 @@ const Dashboard = () => {
         `}
       </style>
       {/* Menu Lateral Desktop */}
-      <aside className="w-64 bg-black p-5 flex-col border-r border-red-900/50 shadow-2xl space-y-2 hidden md:flex">
+      <aside className="w-64 bg-gradient-to-br from-black via-gray-900 to-gray-950 p-5 flex-col border-r border-red-900/50 shadow-2xl space-y-2 hidden md:flex">
         <div className="mb-6 py-3 text-center border-b border-red-900/30">
-          <img src="/lovable-uploads/logo.png" alt="Logo" className="h-12 w-auto mx-auto mb-2" />
-          {currentUser?.fullName && <p className="text-xs font-medium text-red-400 truncate">{currentUser.fullName}</p>}
-          {currentUser?.email && !currentUser?.fullName && <p className="text-xs font-medium text-red-400 truncate">{currentUser.email}</p>}
+          <img src="/lovable-uploads/logo.png" alt="Logo" className="h-10 w-auto mx-auto mb-2 drop-shadow-lg" />
+          {currentUser?.fullName && <p className="text-xs font-semibold text-red-400 truncate font-mono">{currentUser.fullName}</p>}
+          {currentUser?.email && !currentUser?.fullName && <p className="text-xs font-semibold text-red-400 truncate font-mono">{currentUser.email}</p>}
         </div>
-        <nav className="flex-grow">
+        <nav className="flex-grow flex flex-col gap-1 mt-2">
           {menuItems.map((item) => (
             <div key={item.id}>
               {item.sectionBreak && <hr className="my-3 border-red-900/30" />}
               <button
                 onClick={() => item.available && !item.locked && setActiveContent(item.id)}
-                className={`w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-md transition-all duration-200 group text-sm font-medium
-                            ${activeContent === item.id && item.available && !item.locked ? 'bg-red-600 text-white shadow-md transform scale-102' : 'hover:bg-red-700/20 hover:text-red-300'}
-                            ${item.locked ? 'opacity-40 cursor-not-allowed' : (item.available ? 'cursor-pointer' : 'opacity-60 cursor-not-allowed')}`}
+                className={`w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl transition-all duration-200 group text-sm font-semibold tracking-wide
+                  ${activeContent === item.id && item.available && !item.locked ? 'bg-gradient-to-r from-red-600 via-pink-500 to-purple-600 text-white shadow-lg scale-105' : 'hover:bg-red-700/20 hover:text-red-300 bg-black/40'}
+                  ${item.locked ? 'opacity-40 cursor-not-allowed' : (item.available ? 'cursor-pointer' : 'opacity-60 cursor-not-allowed')}`}
                 disabled={item.locked || !item.available}
+                style={{letterSpacing: '0.02em'}}
               >
-                {item.icon}
-                <span className="flex-1 text-left truncate">{item.text}</span>
+                <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-gradient-to-br from-red-500/20 via-pink-500/10 to-purple-600/10 text-red-400 group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-red-600 group-hover:to-purple-600 transition-all duration-200">
+                  {item.icon}
+                </span>
+                <span className="flex-1 text-left truncate font-mono">{item.text}</span>
                 {item.locked ? <Lock size={16} className="opacity-70"/> : (item.available ? <ChevronRight size={16} className={`transition-transform duration-200 ${activeContent === item.id ? 'rotate-90' : ''} group-hover:translate-x-0.5`} /> : null)}
               </button>
             </div>
@@ -119,7 +160,7 @@ const Dashboard = () => {
           <Button
             onClick={handleLogout}
             variant="destructive"
-            className="w-full bg-red-800/80 hover:bg-red-700 text-white flex items-center justify-center space-x-2 py-2.5 rounded-md shadow-sm hover:shadow-md transition-all duration-200 group text-sm font-medium"
+            className="w-full bg-gradient-to-r from-red-800 via-pink-700 to-purple-800 hover:from-red-700 hover:to-purple-700 text-white flex items-center justify-center space-x-2 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 group text-sm font-semibold"
           >
             <LogOut size={16} />
             <span>Sair</span>
@@ -134,21 +175,21 @@ const Dashboard = () => {
           <button onClick={() => setMobileMenuOpen(true)} className="text-red-400 focus:outline-none">
             <Menu size={28} />
           </button>
-          <img src="/lovable-uploads/logo.png" alt="Logo" className="h-10 w-auto mx-auto" />
+          <img src="/lovable-uploads/logo.png" alt="Logo" className="h-8 w-auto mx-auto drop-shadow-lg" />
           <div className="w-7" /> {/* Espaço para alinhar */}
         </div>
         {/* Drawer e backdrop */}
         {mobileMenuOpen && (
           <>
             <div className="fixed inset-0 bg-black/60 animate-fadeBg z-40" onClick={() => setMobileMenuOpen(false)} />
-            <aside className="fixed top-0 left-0 h-full w-4/5 max-w-xs bg-black border-r border-red-900/50 shadow-2xl z-50 animate-slideInLeft flex flex-col p-5">
+            <aside className="fixed top-0 left-0 h-full w-4/5 max-w-xs bg-gradient-to-br from-black via-gray-900 to-gray-950 border-r border-red-900/50 shadow-2xl z-50 animate-slideInLeft flex flex-col p-5">
               <div className="flex items-center justify-between mb-6">
-                <img src="/lovable-uploads/logo.png" alt="Logo" className="h-10 w-auto" />
+                <img src="/lovable-uploads/logo.png" alt="Logo" className="h-8 w-auto drop-shadow-lg" />
                 <button onClick={() => setMobileMenuOpen(false)} className="text-red-400 focus:outline-none ml-2">
                   <X size={28} />
                 </button>
               </div>
-              <nav className="flex-grow overflow-y-auto">
+              <nav className="flex-grow flex flex-col gap-1 mt-2 overflow-y-auto">
                 {menuItems.map((item) => (
                   <div key={item.id}>
                     {item.sectionBreak && <hr className="my-3 border-red-900/30" />}
@@ -159,13 +200,16 @@ const Dashboard = () => {
                           setMobileMenuOpen(false);
                         }
                       }}
-                      className={`w-full flex items-center space-x-2.5 px-3 py-3 rounded-md transition-all duration-200 group text-base font-medium mb-1
-                        ${activeContent === item.id && item.available && !item.locked ? 'bg-red-600 text-white shadow-md transform scale-102' : 'hover:bg-red-700/20 hover:text-red-300'}
+                      className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group text-base font-semibold tracking-wide mb-1
+                        ${activeContent === item.id && item.available && !item.locked ? 'bg-gradient-to-r from-red-600 via-pink-500 to-purple-600 text-white shadow-lg scale-105' : 'hover:bg-red-700/20 hover:text-red-300 bg-black/40'}
                         ${item.locked ? 'opacity-40 cursor-not-allowed' : (item.available ? 'cursor-pointer' : 'opacity-60 cursor-not-allowed')}`}
                       disabled={item.locked || !item.available}
+                      style={{letterSpacing: '0.02em'}}
                     >
-                      {item.icon}
-                      <span className="flex-1 text-left truncate">{item.text}</span>
+                      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-gradient-to-br from-red-500/20 via-pink-500/10 to-purple-600/10 text-red-400 group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-red-600 group-hover:to-purple-600 transition-all duration-200">
+                        {item.icon}
+                      </span>
+                      <span className="flex-1 text-left truncate font-mono">{item.text}</span>
                       {item.locked ? <Lock size={16} className="opacity-70"/> : (item.available ? <ChevronRight size={16} className={`transition-transform duration-200 ${activeContent === item.id ? 'rotate-90' : ''} group-hover:translate-x-0.5`} /> : null)}
                     </button>
                   </div>
@@ -175,7 +219,7 @@ const Dashboard = () => {
                 <Button
                   onClick={handleLogout}
                   variant="destructive"
-                  className="w-full bg-red-800/80 hover:bg-red-700 text-white flex items-center justify-center space-x-2 py-3 rounded-md shadow-sm hover:shadow-md transition-all duration-200 group text-base font-medium"
+                  className="w-full bg-gradient-to-r from-red-800 via-pink-700 to-purple-800 hover:from-red-700 hover:to-purple-700 text-white flex items-center justify-center space-x-2 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 group text-base font-semibold"
                 >
                   <LogOut size={16} />
                   <span>Sair</span>
@@ -188,13 +232,61 @@ const Dashboard = () => {
 
       {/* Conteúdo Principal */}
       <main className="flex-1 p-4 sm:p-6 md:p-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-y-auto min-h-screen">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto mt-8">
+          {/* Título minimalista e futurista */}
+          <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-pink-500 to-purple-600 mb-2 font-[Montserrat,sans-serif] drop-shadow-lg" style={{letterSpacing: '0.01em'}}>Dashboard</h1>
+          <p className="text-sm text-gray-400 mb-6 font-mono">Bem-vindo(a) à sua central de controle do evento.</p>
           {renderContent()}
           <div className="mt-8 bg-black/30 backdrop-blur-sm border border-red-500/20 p-4 sm:p-6 rounded-lg shadow-xl animate-fadeIn">
-              <h3 className="text-lg sm:text-xl font-bold text-red-400 mb-3 text-center">Gamificação: Ingresso Meet Milionário!</h3>
+              <h3 className="text-base sm:text-lg font-bold text-red-400 mb-3 text-center tracking-wide uppercase font-mono">Gamificação: Ingresso Meet Milionário!</h3>
               <p className="text-gray-400 text-xs leading-relaxed text-center">
                   Participe das aulas ao vivo, interaja e acumule pontos para garantir seu ingresso exclusivo para o evento presencial 'Meet Milionário'! Detalhes em breve.
               </p>
+          </div>
+
+          {/* QUIZZ MINIMALISTA */}
+          <div className="mt-10 mb-8 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-black/80 via-gray-900/80 to-gray-950/90 border border-red-500/10 shadow-2xl flex flex-col items-center gap-6 max-w-xl mx-auto">
+            <h2 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-pink-500 to-purple-600 mb-2 font-[Montserrat,sans-serif] tracking-tight text-center">Responda para entrar no Grupo</h2>
+            <div className="w-full flex flex-col items-center">
+              {quizStep < quizQuestions.length ? (
+                <motion.div
+                  key={quizStep}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-full"
+                >
+                  <p className="text-base sm:text-lg text-gray-200 font-semibold mb-6 text-center min-h-[48px]">{quizQuestions[quizStep].question}</p>
+                  <div className="flex flex-wrap justify-center gap-4">
+                    {quizQuestions[quizStep].options.map((opt) => (
+                      <button
+                        key={opt.value}
+                        onClick={() => handleQuiz(opt.value)}
+                        className="px-6 py-2 rounded-full bg-gradient-to-r from-red-500 via-pink-500 to-purple-600 text-white font-bold shadow-md hover:scale-105 hover:from-red-400 hover:to-purple-500 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-400 text-base sm:text-lg min-w-[80px]"
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-full flex flex-col items-center"
+                >
+                  <p className="text-lg sm:text-xl text-green-400 font-bold mb-4 text-center">Agradecemos sua resposta!</p>
+                  <Button
+                    className="mt-2 px-8 py-3 rounded-full bg-gradient-to-r from-red-500 via-pink-500 to-purple-600 text-white font-bold shadow-lg hover:scale-105 transition-all duration-200 text-base sm:text-lg"
+                    // onClick={() => window.open('LINK_DO_GRUPO', '_blank')}
+                  >
+                    Entrar no Grupo
+                  </Button>
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
       </main>
