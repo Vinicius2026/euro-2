@@ -351,10 +351,16 @@ const Index = () => {
             </button>
             <button
               onClick={() => navigate('/register')}
-              className="w-full sm:w-auto bg-black/60 backdrop-blur-md border border-white/20 hover:border-white/40 text-white font-semibold text-lg px-8 py-3 rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors font-[Inter,sans-serif]"
-              style={{ fontFamily: 'Inter, Montserrat, sans-serif', fontWeight: 600 }}
+              className="w-full sm:w-auto relative border border-white/20 hover:border-white/40 text-white font-semibold text-lg px-8 py-3 rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors font-[Inter,sans-serif] overflow-hidden"
+              style={{ fontFamily: 'Inter, Montserrat, sans-serif', fontWeight: 600, background: 'transparent' }}
             >
-              Cadastro
+              <span className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{
+                background: 'radial-gradient(ellipse at 60% 40%, rgba(255,59,48,0.18) 0%, rgba(136,58,255,0.13) 60%, transparent 100%)',
+                zIndex: 0,
+                borderRadius: 'inherit',
+                opacity: 1
+              }} />
+              <span className="relative z-10">Cadastro</span>
             </button>
           </div>
         </div>
