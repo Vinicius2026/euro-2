@@ -33,21 +33,23 @@ export default function AdminDashboard() {
     <div className="min-h-screen flex bg-[#181C23] text-[#E3E6EB] font-sans text-[13px]">
       {/* Sidebar Mobile Drawer */}
       <div className={`fixed inset-0 z-40 bg-black/60 transition-opacity md:hidden ${sidebarOpen ? 'block' : 'hidden'}`} onClick={() => setSidebarOpen(false)} />
-      <aside className={`fixed top-0 left-0 z-50 h-full w-60 bg-gradient-to-b from-[#23272F] via-[#181C23] to-[#181C23] border-r border-[#23272F] flex flex-row py-6 px-0 gap-0 transition-transform duration-300 md:static md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:flex md:w-52 md:py-6 md:px-0`}>
-        {/* Logo e nome */}
-        <div className="flex flex-col items-center justify-start w-20 min-w-[80px] border-r border-[#2A3140] pr-2 mr-2 h-full relative bg-[#23272F]/60">
-          <img src="/lovable-uploads/logo.png" alt="Logo" className="h-10 w-auto max-w-[60px] object-contain mt-2 mb-2" />
-          <span className="text-[10px] text-[#E3E6EB]/20 font-light tracking-wide mt-1 mb-2" style={{letterSpacing: '0.04em'}}>Pedro Bertotto</span>
-          <div className="absolute right-0 top-0 h-full w-[2px] bg-gradient-to-b from-[#2A3140] via-[#23272F] to-[#181C23] opacity-60" />
+      <aside className={`fixed top-0 left-0 z-50 h-full w-60 bg-gradient-to-b from-[#23272F] via-[#181C23] to-[#181C23] border-r border-[#23272F] flex flex-row py-6 px-0 gap-0 transition-transform duration-300 md:static md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:flex md:w-52 md:py-6 md:px-0 shadow-2xl md:shadow-none`}>
+        {/* Logo e nome - MOBILE */}
+        <div className="flex flex-col items-center justify-start w-20 min-w-[80px] border-r border-[#2A3140] pr-2 mr-2 h-full relative bg-[#23272F]/60 md:bg-transparent md:pr-2 md:mr-2">
+          <div className="flex flex-col items-center w-full md:mt-2 md:mb-2 mt-6 mb-2">
+            <img src="/lovable-uploads/logo.png" alt="Logo" className="h-12 w-auto max-w-[60px] object-contain mb-1 drop-shadow-lg" />
+            <span className="text-[11px] text-[#E3E6EB]/20 font-light tracking-wide mt-1 mb-2 md:mb-0" style={{letterSpacing: '0.04em'}}>Pedro Bertotto</span>
+          </div>
+          <div className="absolute right-0 top-0 h-full w-[2px] bg-gradient-to-b from-[#2A3140] via-[#23272F] to-[#181C23] opacity-60 md:block hidden" />
         </div>
         {/* Menu */}
-        <nav className="flex flex-col gap-1 flex-1 pl-2">
+        <nav className="flex flex-col gap-1 flex-1 pl-2 md:pl-2 pt-4 md:pt-0">
           {menu.map((item) => (
             <button
               key={item.id}
               onClick={() => { setActive(item.id); setSidebarOpen(false); }}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md text-xs font-medium transition-all duration-200 w-full border-l-4 ${active === item.id ? 'bg-[#23272F]/80 text-[#7EC4F8] shadow border-l-[#7EC4F8]' : 'hover:bg-[#23272F] hover:text-[#7EC4F8] text-[#AEB4C0] border-l-transparent'}`}
-              style={{marginBottom: 2}}
+              className={`flex items-center gap-2 px-4 py-3 rounded-lg text-base md:text-xs font-medium transition-all duration-200 w-full border-l-4 ${active === item.id ? 'bg-[#23272F]/80 text-[#7EC4F8] shadow border-l-[#7EC4F8]' : 'hover:bg-[#23272F] hover:text-[#7EC4F8] text-[#AEB4C0] border-l-transparent'} md:rounded-md md:px-3 md:py-2 md:text-xs`}
+              style={{marginBottom: 4}}
             >
               {item.icon}
               <span>{item.label}</span>
@@ -56,13 +58,13 @@ export default function AdminDashboard() {
         </nav>
       </aside>
       {/* Botão menu mobile */}
-      <button className="fixed top-4 left-4 z-50 md:hidden bg-[#23272F]/80 p-2 rounded-full border border-[#23272F] text-[#7EC4F8]" onClick={() => setSidebarOpen(true)} style={{ display: sidebarOpen ? 'none' : 'block' }}>
-        <Menu size={22} />
+      <button className="fixed top-4 left-4 z-50 md:hidden bg-[#23272F]/90 p-3 rounded-full border border-[#23272F] text-[#7EC4F8] shadow-lg hover:bg-[#23272F]/80 transition-all duration-200" onClick={() => setSidebarOpen(true)} style={{ display: sidebarOpen ? 'none' : 'block' }}>
+        <Menu size={26} />
       </button>
       {/* Botão fechar drawer mobile */}
       {sidebarOpen && (
-        <button className="fixed top-4 left-60 z-50 md:hidden bg-[#23272F]/80 p-2 rounded-full border border-[#23272F] text-[#7EC4F8]" onClick={() => setSidebarOpen(false)}>
-          <X size={22} />
+        <button className="fixed top-4 left-56 z-50 md:hidden bg-[#23272F]/90 p-3 rounded-full border border-[#23272F] text-[#7EC4F8] shadow-lg hover:bg-[#23272F]/80 transition-all duration-200" onClick={() => setSidebarOpen(false)}>
+          <X size={26} />
         </button>
       )}
       {/* Main content */}
