@@ -57,83 +57,95 @@ export function RegisterForm() {
   };
 
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
-        <CardTitle>Criar Conta</CardTitle>
-        <CardDescription>Insira seus dados para criar uma nova conta.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="fullName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Nome Completo</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Seu nome completo" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="seu@email.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Senha</FormLabel>
-                  <FormControl>
-                    <Input type="password" placeholder="Sua senha" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="confirmPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Confirmar Senha</FormLabel>
-                  <FormControl>
-                    <Input type="password" placeholder="Confirme sua senha" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {error && <p className="text-sm font-medium text-destructive">{error}</p>}
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Criando conta..." : "Criar Conta"}
+    <div className="w-full max-w-md mx-auto bg-black/90 rounded-2xl shadow-2xl p-6 sm:p-8 flex flex-col gap-6 border border-gray-800">
+      {/* Botão Google mockado */}
+      <button
+        type="button"
+        className="w-full flex items-center justify-center gap-3 py-3 mb-2 rounded-xl bg-white/5 border border-gray-700 hover:bg-white/10 transition-all duration-150 shadow-md focus:outline-none focus:ring-2 focus:ring-red-400"
+        style={{ minHeight: 48 }}
+        disabled
+      >
+        <img src="/lovable-uploads/logar-com-google-pedro-bertotto.png" alt="Google" className="h-6 w-6" />
+        <span className="text-sm font-semibold text-gray-100 tracking-wide">Conectar com Google</span>
+      </button>
+      <Card className="bg-transparent border-none shadow-none p-0">
+        <CardHeader className="p-0 mb-2">
+          <CardTitle className="text-xl font-bold text-white mb-1 tracking-tight font-[Montserrat,sans-serif]">Criar Conta</CardTitle>
+          <CardDescription className="text-sm text-gray-400 font-mono">Insira seus dados para criar uma nova conta.</CardDescription>
+        </CardHeader>
+        <CardContent className="p-0">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="fullName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-300 text-xs font-semibold tracking-wide">Nome Completo</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Seu nome completo" {...field} className="bg-black/60 border border-gray-700 rounded-xl px-4 py-3 text-gray-100 placeholder-gray-500 focus:border-red-500 focus:ring-2 focus:ring-red-400 transition-all duration-150" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-300 text-xs font-semibold tracking-wide">Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="seu@email.com" {...field} className="bg-black/60 border border-gray-700 rounded-xl px-4 py-3 text-gray-100 placeholder-gray-500 focus:border-red-500 focus:ring-2 focus:ring-red-400 transition-all duration-150" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-300 text-xs font-semibold tracking-wide">Senha</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="Sua senha" {...field} className="bg-black/60 border border-gray-700 rounded-xl px-4 py-3 text-gray-100 placeholder-gray-500 focus:border-red-500 focus:ring-2 focus:ring-red-400 transition-all duration-150" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-300 text-xs font-semibold tracking-wide">Confirmar Senha</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="Confirme sua senha" {...field} className="bg-black/60 border border-gray-700 rounded-xl px-4 py-3 text-gray-100 placeholder-gray-500 focus:border-red-500 focus:ring-2 focus:ring-red-400 transition-all duration-150" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {error && <p className="text-xs font-medium text-red-500 bg-red-500/10 rounded-lg px-3 py-2">{error}</p>}
+              <Button type="submit" className="w-full rounded-xl bg-gradient-to-r from-red-600 via-pink-500 to-purple-600 text-white font-bold py-3 shadow-lg hover:from-red-500 hover:to-purple-500 transition-all duration-200 text-base mt-2" disabled={loading}>
+                {loading ? "Criando conta..." : "Criar Conta"}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+        <CardFooter className="flex flex-col items-center p-0 mt-4">
+          <p className="text-xs text-gray-500 font-mono">
+            Já possui uma conta?{" "}
+            <Button variant="link" asChild className="p-0 h-auto text-red-400 font-semibold">
+              <Link to="/">
+                Faça login
+              </Link>
             </Button>
-          </form>
-        </Form>
-      </CardContent>
-      <CardFooter className="flex flex-col items-center">
-        <p className="text-sm text-muted-foreground">
-          Já possui uma conta?{" "}
-          <Button variant="link" asChild className="p-0 h-auto">
-            <Link to="/">
-              Faça login
-            </Link>
-          </Button>
-        </p>
-      </CardFooter>
-    </Card>
+          </p>
+        </CardFooter>
+      </Card>
+    </div>
   );
 }

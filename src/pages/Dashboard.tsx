@@ -232,7 +232,7 @@ const Dashboard = () => {
 
       {/* Conteúdo Principal */}
       <main className="flex-1 p-4 sm:p-6 md:p-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-y-auto min-h-screen">
-        <div className="max-w-2xl mx-auto mt-8">
+        <div className="max-w-2xl mx-auto mt-16">
           {/* Título minimalista e futurista */}
           <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-pink-500 to-purple-600 mb-2 font-[Montserrat,sans-serif] drop-shadow-lg" style={{letterSpacing: '0.01em'}}>Dashboard</h1>
           <p className="text-sm text-gray-400 mb-6 font-mono">Bem-vindo(a) à sua central de controle do evento.</p>
