@@ -325,17 +325,33 @@ const Index = () => {
             (e como <span className="text-white font-semibold">você</span> pode copiar e colar, mesmo saindo do zero)
           </p>
 
-          {/* Cards de Data/Hora sóbrios */}
-          <div className="flex justify-center gap-3 mb-8 flex-wrap">
+          {/* Cards de Data/Hora padronizados */}
+          <div className="flex justify-center gap-5 mb-8 flex-wrap">
             {[
               { icon: CalendarIcon, text: '10 de Junho', label: 'Data' },
               { icon: ClockIcon, text: '20:03h', label: 'Hora' },
               { icon: YoutubeIcon, text: 'Ao Vivo', label: 'Transmissão' }
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center bg-neutral-900 border border-neutral-700 rounded-lg px-5 py-3 min-w-[100px]">
-                <span className="mb-1"><item.icon /></span>
-                <span className="text-base font-semibold text-white">{item.text}</span>
-                <span className="text-xs text-gray-400">{item.label}</span>
+              <div
+                key={i}
+                className="
+                  flex flex-col items-center justify-center
+                  w-40 h-32
+                  bg-gradient-to-b from-neutral-900/90 to-neutral-800/80
+                  border border-red-500/30
+                  rounded-2xl
+                  shadow-lg
+                  transition-all duration-300
+                  hover:border-red-400/60 hover:shadow-red-500/10
+                  group
+                "
+                style={{ minWidth: 150, minHeight: 110 }}
+              >
+                <span className="mb-2">
+                  <item.icon />
+                </span>
+                <span className="text-lg font-bold text-white mb-1">{item.text}</span>
+                <span className="text-xs text-gray-400 tracking-wide">{item.label}</span>
               </div>
             ))}
           </div>
