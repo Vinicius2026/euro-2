@@ -268,6 +268,24 @@ const Index = () => {
         .animate-tv-flicker { animation: tv-flicker 1.2s infinite steps(2); }
       `}</style>
 
+      {/* Flicker do texto 'Ao Vivo' */}
+      <style>{`
+        @keyframes ao-vivo-flicker {
+          0%, 80% { opacity: 1; }
+          81% { opacity: 0; }
+          82% { opacity: 1; }
+          83% { opacity: 0; }
+          84% { opacity: 1; }
+          85% { opacity: 0; }
+          86% { opacity: 1; }
+          87% { opacity: 0; }
+          88%, 100% { opacity: 1; }
+        }
+        .ao-vivo-flicker {
+          animation: ao-vivo-flicker 8s infinite;
+        }
+      `}</style>
+
       {/* HERO SECTION SÓBRIO E TECH COM ANIMAÇÃO DE BACKGROUND */}
       <div className="min-h-screen w-full flex items-center justify-center relative overflow-hidden bg-black">
         {/* Camadas de animação de fundo (orbs, partículas, etc.) */}
@@ -356,16 +374,14 @@ const Index = () => {
                 }
                 style={{ minWidth: 90, minHeight: 60 }}
               >
-                <span className={
-                  (item.tvEffect ? 'animate-tv-flicker' : '') + ' mb-1'}
-                  style={{ opacity: item.transparent ? 0.7 : 1 }}
-                >
+                <span className="mb-1" style={{ opacity: item.transparent ? 0.7 : 1 }}>
                   <item.icon />
                 </span>
-                <span className={
-                  `text-[0.95rem] font-semibold mb-0.5 ` +
-                  (item.tvEffect ? 'text-red-400' : 'text-white')
-                }
+                <span
+                  className={
+                    `text-[0.95rem] font-semibold mb-0.5 ` +
+                    (item.tvEffect ? 'text-red-400 ao-vivo-flicker' : 'text-white')
+                  }
                   style={{ opacity: item.transparent ? 0.7 : 1 }}
                 >
                   {item.text}
