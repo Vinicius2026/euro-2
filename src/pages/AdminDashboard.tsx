@@ -33,17 +33,21 @@ export default function AdminDashboard() {
     <div className="min-h-screen flex bg-[#181C23] text-[#E3E6EB] font-sans text-[13px]">
       {/* Sidebar Mobile Drawer */}
       <div className={`fixed inset-0 z-40 bg-black/60 transition-opacity md:hidden ${sidebarOpen ? 'block' : 'hidden'}`} onClick={() => setSidebarOpen(false)} />
-      <aside className={`fixed top-0 left-0 z-50 h-full w-60 bg-gradient-to-b from-[#23272F] via-[#181C23] to-[#181C23] border-r border-[#23272F] flex flex-col py-6 px-2 gap-2 transition-transform duration-300 md:static md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:flex md:w-52 md:py-6 md:px-2`}>
-        <div className="mb-6 flex flex-col items-center justify-center">
-          <img src="/lovable-uploads/logo.png" alt="Logo" className="h-8 w-auto max-w-[100px] object-contain" />
+      <aside className={`fixed top-0 left-0 z-50 h-full w-60 bg-gradient-to-b from-[#23272F] via-[#181C23] to-[#181C23] border-r border-[#23272F] flex flex-row py-6 px-0 gap-0 transition-transform duration-300 md:static md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:flex md:w-52 md:py-6 md:px-0`}>
+        {/* Logo e nome */}
+        <div className="flex flex-col items-center justify-start w-20 min-w-[80px] border-r border-[#2A3140] pr-2 mr-2 h-full relative bg-[#23272F]/60">
+          <img src="/lovable-uploads/logo.png" alt="Logo" className="h-10 w-auto max-w-[60px] object-contain mt-2 mb-2" />
+          <span className="text-[10px] text-[#E3E6EB]/20 font-light tracking-wide mt-1 mb-2" style={{letterSpacing: '0.04em'}}>Pedro Bertotto</span>
+          <div className="absolute right-0 top-0 h-full w-[2px] bg-gradient-to-b from-[#2A3140] via-[#23272F] to-[#181C23] opacity-60" />
         </div>
-        <nav className="flex flex-col gap-1">
+        {/* Menu */}
+        <nav className="flex flex-col gap-1 flex-1 pl-2">
           {menu.map((item) => (
             <button
               key={item.id}
               onClick={() => { setActive(item.id); setSidebarOpen(false); }}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md text-xs font-medium transition-all duration-200 w-full
-                ${active === item.id ? 'bg-[#2A3140] text-[#7EC4F8] shadow' : 'hover:bg-[#23272F] hover:text-[#7EC4F8] text-[#AEB4C0]'}`}
+              className={`flex items-center gap-2 px-3 py-2 rounded-md text-xs font-medium transition-all duration-200 w-full border-l-4 ${active === item.id ? 'bg-[#23272F]/80 text-[#7EC4F8] shadow border-l-[#7EC4F8]' : 'hover:bg-[#23272F] hover:text-[#7EC4F8] text-[#AEB4C0] border-l-transparent'}`}
+              style={{marginBottom: 2}}
             >
               {item.icon}
               <span>{item.label}</span>
