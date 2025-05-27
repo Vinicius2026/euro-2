@@ -86,14 +86,14 @@ const Dashboard = () => {
       case 'dia10':
         return (
           <div className="bg-gray-800/70 p-8 rounded-xl shadow-2xl animate-fadeIn">
-            <h2 className="text-3xl font-bold text-red-400 mb-6">Dia 10/06 - Conteúdo AO VIVO</h2>
-            <p className="text-gray-300 mb-6">A transmissão ao vivo começará em breve. Prepare sua pipoca e anote tudo!</p>
+            <h2 className="text-lg font-bold mb-4" style={{ color: '#7a7a7a' }}>Dia 10/06 - Conteúdo AO VIVO</h2>
+            <p className="mb-4" style={{ color: '#7a7a7a', fontSize: '0.85rem' }}>A transmissão ao vivo começará em breve. Prepare sua pipoca e anote tudo!</p>
             {/* Placeholder do Player de Vídeo */}
             <div className="aspect-video bg-black/50 border-2 border-red-500/30 rounded-lg flex items-center justify-center text-gray-500 shadow-inner">
               <PlayCircle size={64} className="opacity-30" />
               <span className="ml-4 text-xl">Player de Vídeo (Exemplo)</span>
             </div>
-            <p className="text-sm text-gray-400 mt-4 text-center">O vídeo será disponibilizado aqui no horário marcado.</p>
+            <p className="text-xs mt-4 text-center" style={{ color: '#7a7a7a' }}>O vídeo será disponibilizado aqui no horário marcado: <span className="font-semibold">10/06 (20:03)</span></p>
           </div>
         );
       case 'dia11':
@@ -141,7 +141,7 @@ const Dashboard = () => {
               {item.sectionBreak && <hr className="my-3 border-red-900/30" />}
               <button
                 onClick={() => item.available && !item.locked && setActiveContent(item.id)}
-                className={`w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl transition-all duration-200 group text-sm font-semibold tracking-wide
+                className={`w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl transition-all duration-200 group text-xs font-semibold tracking-wide
                   ${activeContent === item.id && item.available && !item.locked ? 'bg-gradient-to-r from-red-600 via-pink-500 to-purple-600 text-white shadow-lg scale-105' : 'hover:bg-red-700/20 hover:text-red-300 bg-black/40'}
                   ${item.locked ? 'opacity-40 cursor-not-allowed' : (item.available ? 'cursor-pointer' : 'opacity-60 cursor-not-allowed')}`}
                 disabled={item.locked || !item.available}
@@ -160,7 +160,7 @@ const Dashboard = () => {
           <Button
             onClick={handleLogout}
             variant="destructive"
-            className="w-full bg-gradient-to-r from-red-800 via-pink-700 to-purple-800 hover:from-red-700 hover:to-purple-700 text-white flex items-center justify-center space-x-2 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 group text-sm font-semibold"
+            className="w-full bg-gradient-to-r from-red-800 via-pink-700 to-purple-800 hover:from-red-700 hover:to-purple-700 text-white flex items-center justify-center space-x-2 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 group text-xs font-semibold"
           >
             <LogOut size={16} />
             <span>Sair</span>
@@ -200,7 +200,7 @@ const Dashboard = () => {
                           setMobileMenuOpen(false);
                         }
                       }}
-                      className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group text-base font-semibold tracking-wide mb-1
+                      className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group text-xs font-semibold tracking-wide mb-1
                         ${activeContent === item.id && item.available && !item.locked ? 'bg-gradient-to-r from-red-600 via-pink-500 to-purple-600 text-white shadow-lg scale-105' : 'hover:bg-red-700/20 hover:text-red-300 bg-black/40'}
                         ${item.locked ? 'opacity-40 cursor-not-allowed' : (item.available ? 'cursor-pointer' : 'opacity-60 cursor-not-allowed')}`}
                       disabled={item.locked || !item.available}
@@ -219,7 +219,7 @@ const Dashboard = () => {
                 <Button
                   onClick={handleLogout}
                   variant="destructive"
-                  className="w-full bg-gradient-to-r from-red-800 via-pink-700 to-purple-800 hover:from-red-700 hover:to-purple-700 text-white flex items-center justify-center space-x-2 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 group text-base font-semibold"
+                  className="w-full bg-gradient-to-r from-red-800 via-pink-700 to-purple-800 hover:from-red-700 hover:to-purple-700 text-white flex items-center justify-center space-x-2 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 group text-xs font-semibold"
                 >
                   <LogOut size={16} />
                   <span>Sair</span>
