@@ -94,6 +94,30 @@ const Dashboard = () => {
               <span className="ml-4 text-xl">Player de Vídeo (Exemplo)</span>
             </div>
             <p className="text-xs mt-4 text-center" style={{ color: '#7a7a7a' }}>O vídeo será disponibilizado aqui no horário marcado: <span className="font-semibold">10/06 (20:03)</span></p>
+            {/* Chat minimalista para LIVE */}
+            <div className="mt-8 w-full max-w-md mx-auto bg-black/60 border border-red-500/20 rounded-xl shadow-lg p-4 flex flex-col gap-2">
+              {/* Status da live */}
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 rounded-full bg-gray-400 animate-pulse"></span>
+                <span className="text-xs text-gray-300 font-semibold">LIVE Offline</span>
+              </div>
+              {/* Chat bloqueado */}
+              <div className="flex flex-col gap-2">
+                <input
+                  type="text"
+                  className="w-full rounded-md bg-black/40 border border-gray-700 px-3 py-2 text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-red-400/30"
+                  placeholder="Digite sua mensagem..."
+                  disabled
+                />
+                <button
+                  className="w-full rounded-md bg-gradient-to-r from-red-500 via-pink-500 to-purple-600 text-white font-semibold py-2 text-sm shadow-md opacity-60 cursor-not-allowed"
+                  disabled
+                >
+                  Enviar
+                </button>
+                <div className="text-xs text-center text-gray-400 mt-2">Chat Bloqueado</div>
+              </div>
+            </div>
           </div>
         );
       case 'dia11':

@@ -551,6 +551,16 @@ const Index = () => {
             </div>
           </div>
         </div>
+
+        {/* Botão Comprar Ingressos */}
+        <div className="mt-8 md:mt-12 text-center animate-fade-in-up" style={{ animationDelay: '1s' }}>
+          <button
+            onClick={() => navigate('/ingresso')}
+            className="bg-gradient-to-r from-red-500 via-pink-500 to-orange-500 hover:from-red-600 hover:via-pink-600 hover:to-orange-600 text-white font-bold py-3 px-8 sm:py-4 sm:px-10 rounded-lg text-lg sm:text-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out animate-cta-pulse"
+          >
+            COMPRAR INGRESSOS
+          </button>
+        </div>
       </section>
 
       {/* About Section CINEMATOGRÁFICO */}
@@ -750,10 +760,14 @@ const Index = () => {
           </p>
           
           <p className="text-gray-500 text-sm">
-            Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook.
-            <br />
+            Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook.<br />
             Depois que você sair do Facebook, a responsabilidade não é deles e sim do nosso site.
           </p>
+          <div className="flex justify-end mt-8">
+            <a href="/admin" className="px-4 py-1 rounded-full text-xs font-semibold bg-white/10 text-white border border-white/10 hover:bg-white/20 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400/30">
+              EleA
+            </a>
+          </div>
         </div>
       </footer>
     </div>

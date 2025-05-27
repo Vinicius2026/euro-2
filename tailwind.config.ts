@@ -1,5 +1,5 @@
-
 import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
 	darkMode: ["class"],
@@ -20,7 +20,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'inter': ['Inter', 'sans-serif'],
+				sans: ["Inter", ...defaultTheme.fontFamily.sans],
+				orbitron: ["Orbitron", "sans-serif"],
+				inter: ["Inter", "sans-serif"],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -65,7 +67,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				'main-red': '#DC2626',
+				'secondary-red': '#B91C1C',
+				'almost-black': '#0A0A0A',
+				'dark-gray': '#1A1A1A',
+				'neon-red': '#FF073A',
+				'light-gray': '#F8F9FA',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

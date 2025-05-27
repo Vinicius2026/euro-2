@@ -9,6 +9,9 @@ import Dashboard from "./pages/Dashboard"; // Added Dashboard import
 import RegisterPage from "./pages/RegisterPage"; // Added RegisterPage import
 import LoginPage from "./pages/LoginPage";
 import { useAuth } from "./contexts/AuthContext"; 
+import AdminDashboard from "./pages/AdminDashboard";
+import Ingresso from "./pages/ingresso";
+import Footer from './components/Footer';
 
 const queryClient = new QueryClient();
 
@@ -56,9 +59,12 @@ const App = () => {
                 </ProtectedRoute>
               } 
             />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/ingresso" element={<Ingresso />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
