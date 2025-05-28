@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import NearbyHotelsMap from '../components/ui/NearbyHotelsMap';
 
 // SVGs com animações avançadas
 const CalendarIcon = () => (
@@ -588,46 +589,23 @@ const Index = () => {
             </div>
 
             {/* Content com Animações Avançadas */}
-            <div className="flex-1 space-y-8 animate-slide-in-right">
-              <div className="relative">
-                <div className="inline-flex items-center bg-gradient-to-r from-red-500/20 to-red-600/20 backdrop-blur-xl border border-red-500/30 rounded-full px-8 py-3 animate-bounce-gentle">
-                  <span className="text-red-400 font-black text-lg tracking-wider animate-pulse-text">⚡ QUEM SOU EU</span>
-                </div>
-              </div>
-              
-              <div className="relative">
-                <h2 className="text-5xl lg:text-6xl font-black text-white animate-title-emerge">
-                  PEDRO BERTOTTO
-                </h2>
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-transparent to-red-600/20 blur-xl animate-shimmer"></div>
-              </div>
-              
-              <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
-                <p className="animate-fade-in-up-delay-1">
-                  Mais de <span className="text-red-400 font-bold animate-pulse-text">10 anos</span> de experiência no mercado digital, 
-                  responsável por gerar <span className="text-white font-bold">milhões em vendas</span> para seus clientes e alunos.
-                </p>
-                
-                <p className="animate-fade-in-up-delay-2">
-                  Pioneiro no mercado europeu de <span className="text-red-400 font-bold">COD (Contra Entrega)</span>, 
-                  ajudando empreendedores brasileiros a <span className="text-white font-bold">multiplicarem seus lucros</span> 
-                  vendendo para a Europa.
-                </p>
-                
-                <p className="animate-fade-in-up-delay-3">
-                  Criador do método <span className="text-red-400 font-bold animate-pulse-text">"Do Real ao Euro"</span>, 
-                  uma estratégia validada que já transformou <span className="text-white font-bold">centenas de vidas</span> 
-                  e mudou para sempre a forma como brasileiros vendem online.
-                </p>
-              </div>
-              
+            <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
+              <p className="animate-fade-in-up-delay-1">
+                Mais de <span className="text-red-400 font-bold animate-pulse-text">10 anos</span> de experiência no mercado digital, 
+                responsável por gerar <span className="text-white font-bold">milhões em vendas</span> para seus clientes e alunos.
+              </p>
+              <p className="animate-fade-in-up-delay-2">
+                Pioneiro no mercado europeu de <span className="text-red-400 font-bold">COD (Contra Entrega)</span>, 
+                ajudando empreendedores brasileiros a <span className="text-white font-bold">multiplicarem seus lucros</span> 
+                vendendo para a Europa.
+              </p>
+              <p className="animate-fade-in-up-delay-3">
+                Criador do método <span className="text-red-400 font-bold animate-pulse-text">"Do Real ao Euro"</span>, 
+                uma estratégia validada que já transformou <span className="text-white font-bold">centenas de vidas</span> 
+                e mudou para sempre a forma como brasileiros vendem online.
+              </p>
               <div className="flex flex-wrap gap-4 animate-fade-in-up-delay-3">
-                {[
-                  "✓ +10 anos de mercado",
-                  "✓ Milhões em vendas geradas",
-                  "✓ Especialista em mercado europeu",
-                  "✓ Criador do método validado"
-                ].map((item, i) => (
+                {["✓ +10 anos de mercado","✓ Milhões em vendas geradas","✓ Especialista em mercado europeu","✓ Criador do método validado"].map((item, i) => (
                   <div key={i} className="bg-gradient-to-r from-red-500/10 to-red-600/10 backdrop-blur-xl border border-red-500/20 rounded-full px-6 py-2 animate-scale-bounce" style={{ animationDelay: `${i * 0.2}s` }}>
                     <span className="text-red-400 font-semibold text-sm">{item}</span>
                   </div>
@@ -637,6 +615,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Mapa de Hotéis Próximos */}
+      <NearbyHotelsMap />
 
       {/* Testimonials Section IMPACTANTE */}
       <section className="py-24 px-6 bg-gradient-to-b from-black via-red-950/5 to-black relative overflow-hidden">

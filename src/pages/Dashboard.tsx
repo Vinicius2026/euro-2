@@ -118,6 +118,19 @@ const Dashboard = () => {
                 <div className="text-xs text-center text-gray-400 mt-2">Chat Bloqueado</div>
               </div>
             </div>
+            {/* Adicionando a animação da cruz abaixo do chat */}
+            <iframe
+              src="/sacred_animation.html"
+              style={{
+                width: "300px",
+                height: "300px",
+                border: "none",
+                margin: "20px auto",
+                display: "block",
+                overflow: "hidden"
+              }}
+              title="Sacred Cross Animation"
+            />
           </div>
         );
       case 'dia11':

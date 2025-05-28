@@ -67,7 +67,7 @@ export default function AdminDashboard() {
         </button>
       )}
       {/* Main content */}
-      <main className="flex-1 p-2 pt-14 md:pt-8 md:p-8 bg-[#181C23] min-h-screen w-full">
+      <main className="flex-1 p-2 pt-20 md:pt-10 md:p-8 bg-[#181C23] min-h-screen w-full">
         {active === 'metricas' && (
           <section>
             <h2 className="text-lg font-bold mb-4 text-[#7EC4F8]">Métricas</h2>
