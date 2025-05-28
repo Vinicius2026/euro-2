@@ -327,6 +327,9 @@ const Dashboard = () => {
           </div>
         </div>
       </main>
+      <footer className="w-full text-center py-4 text-xs text-gray-500 bg-black border-t border-red-900/20">
+        © 2025 Do Real ao Euro - Pedro Bertotto
+      </footer>
     </div>
   );
 };

@@ -620,72 +620,7 @@ const Index = () => {
       <NearbyHotelsMap />
 
       {/* Testimonials Section IMPACTANTE */}
-      <section className="py-24 px-6 bg-gradient-to-b from-black via-red-950/5 to-black relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/3 left-1/6 w-80 h-80 bg-red-500/10 rounded-full filter blur-3xl animate-float-slow"></div>
-          <div className="absolute bottom-1/4 right-1/5 w-96 h-96 bg-red-600/10 rounded-full filter blur-3xl animate-float-reverse"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl lg:text-6xl font-black text-white mb-6 animate-title-emerge">
-              O que estão falando sobre o
-            </h2>
-            <div className="relative">
-              <p className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent animate-gradient-shift">
-                MÉTODO DO EURO
-              </p>
-              <div className="absolute inset-0 bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent animate-text-glow opacity-30 blur-sm">
-                MÉTODO DO EURO
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: "RICARDO SILVA",
-                result: "€2.847 no primeiro mês",
-                text: "Nunca imaginei que seria possível ganhar tanto dinheiro vendendo para a Europa. O método é simplesmente revolucionário!",
-                delay: "0.1s"
-              },
-              {
-                name: "MARINA COSTA",
-                result: "€4.200 em 45 dias",
-                text: "Comecei do zero total e hoje faturo mais em euro do que ganhava em reais no meu emprego. Mudou minha vida!",
-                delay: "0.2s"
-              },
-              {
-                name: "CARLOS MENDES",
-                result: "€6.800 mensais",
-                text: "O mercado europeu realmente não tem concorrência. Estou escalando rapidamente seguindo o passo a passo.",
-                delay: "0.3s"
-              }
-            ].map((testimonial, i) => (
-              <div key={i} className="group relative animate-slide-in-up" style={{ animationDelay: testimonial.delay }}>
-                <div className="absolute inset-0 bg-gradient-to-b from-red-500/20 to-red-600/30 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 animate-pulse-glow"></div>
-                <div className="relative bg-gradient-to-b from-gray-900/90 to-black/90 backdrop-blur-xl border border-red-500/30 hover:border-red-400/60 transition-all duration-500 hover:scale-105 rounded-3xl p-8 min-h-[300px] group-hover:transform group-hover:rotate-1">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center animate-pulse-glow">
-                      <span className="text-white font-black text-lg">{testimonial.name.split(' ').map(n => n[0]).join('')}</span>
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-lg animate-pulse-text">{testimonial.name}</h4>
-                      <p className="text-red-400 font-semibold animate-pulse-text">{testimonial.result}</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-300 leading-relaxed italic">"{testimonial.text}"</p>
-                  <div className="absolute bottom-4 right-4">
-                    <div className="flex text-red-400 animate-pulse-text">
-                      {'★'.repeat(5)}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* REMOVIDO: Bloco de depoimentos */}
 
       {/* Final CTA Section EXPLOSIVO */}
       <section className="py-24 px-6 bg-gradient-to-b from-black via-red-950/20 to-black relative overflow-hidden">
@@ -697,35 +632,59 @@ const Index = () => {
             <div className="absolute top-2/3 left-2/3 w-64 h-64 bg-red-400/25 rounded-full filter blur-2xl animate-float-fast"></div>
           </div>
         </div>
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="mb-12 animate-bounce-gentle">
-            <div className="inline-flex items-center bg-gradient-to-r from-red-500/30 to-red-600/30 backdrop-blur-xl border border-red-500/50 rounded-full px-12 py-4">
-              <span className="text-red-400 font-black text-xl tracking-wider animate-pulse-text">🚨 ÚLTIMA CHANCE</span>
-            </div>
+        <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center">
+          {/* Esfera vermelha animada, complexa e bonita */}
+          <div className="relative mb-4 flex items-center justify-center" style={{ height: '128px' }}>
+            <div className="esfera-animada" />
+            <style>{`
+              .esfera-animada {
+                width: 128px;
+                height: 128px;
+                border-radius: 50%;
+                background: radial-gradient(circle at 35% 30%, #ff4d4f 60%, #b3001b 100%);
+                box-shadow: 0 0 60px 10px #ff4d4f55, 0 8px 32px 0 #b3001b99;
+                position: relative;
+                animation: esfera-flutua 3.5s ease-in-out infinite alternate;
+                overflow: visible;
+              }
+              .esfera-animada::before {
+                content: '';
+                position: absolute;
+                left: 25%;
+                top: 18%;
+                width: 38px;
+                height: 24px;
+                background: radial-gradient(circle, #fff8 60%, transparent 100%);
+                border-radius: 50%;
+                filter: blur(2px);
+                opacity: 0.7;
+                z-index: 2;
+              }
+              .esfera-animada::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 60%;
+                width: 60px;
+                height: 30px;
+                background: radial-gradient(ellipse at center, #fff2 0%, transparent 80%);
+                border-radius: 50%;
+                filter: blur(6px);
+                opacity: 0.5;
+                transform: translate(-50%, 0) rotate(-8deg);
+                z-index: 1;
+              }
+              @keyframes esfera-flutua {
+                0% { transform: translateY(0) scale(1); filter: brightness(1) drop-shadow(0 0 16px #ff4d4f88); }
+                50% { transform: translateY(-18px) scale(1.06); filter: brightness(1.08) drop-shadow(0 0 32px #ff4d4faa); }
+                100% { transform: translateY(-32px) scale(1.12); filter: brightness(1.12) drop-shadow(0 0 48px #ff4d4fcc); }
+              }
+            `}</style>
           </div>
-
-          <h2 className="text-5xl lg:text-7xl font-black text-white mb-8 animate-title-emerge">
-            NÃO PERCA ESTA
-            <br />
-            <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent animate-gradient-shift">
-              OPORTUNIDADE ÚNICA
-            </span>
-          </h2>
-
-          <p className="text-2xl text-gray-300 mb-4 animate-fade-in-up-delay-1">
-            O mercado europeu está <span className="text-red-400 font-bold animate-pulse-text">esperando por você!</span>
-          </p>
-          
-          <p className="text-xl text-gray-400 mb-12 animate-fade-in-up-delay-2">
-            Enquanto outros perdem tempo, você pode estar
-            <br />
-            <span className="text-white font-bold">faturando em EURO ainda hoje!</span>
-          </p>
-
-          <p className="text-red-400 font-bold text-lg mt-8 anime-pulse-text">
-            ⏰ Vagas limitadas • 100% Gratuito • Ao Vivo
-          </p>
+          <h2 className="text-5xl lg:text-7xl font-black text-white mb-4 animate-title-emerge">HOJE PODEMOS!</h2>
+          <span className="text-lg font-bold text-white bg-gradient-to-r from-pink-500 to-red-500 px-4 py-1 rounded uppercase tracking-widest mb-2">EVENTO AO VIVO</span>
+          <span className="text-base font-bold text-white bg-sky-600 px-4 py-1 rounded mb-4 uppercase tracking-widest">100% GRATUITO</span>
+          <p className="text-xs text-slate-400 mt-2 text-center max-w-xs">Vagas limitadas. Aproveite a chance de participar gratuitamente deste evento ao vivo e exclusivo.</p>
         </div>
       </section>
 

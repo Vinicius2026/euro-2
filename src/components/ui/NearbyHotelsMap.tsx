@@ -116,19 +116,18 @@ export default function NearbyHotelsMapEnhanced() {
                     onClick={(e) => e.stopPropagation()}
                     className={`
                       absolute z-40 
-                      p-4 bg-slate-800/95 backdrop-blur-sm border border-slate-600 rounded-lg shadow-xl
+                      p-3 bg-slate-800/95 backdrop-blur-sm border border-slate-600 rounded-lg shadow-xl
                       w-auto 
-                      max-w-[200px] /* Largura máxima no mobile */
-                      sm:max-w-[240px] /* Largura máxima em telas maiores */
-                      md:max-w-[280px]
-                      transform opacity-0 /* Estado inicial para animação */
-                      /* Posicionamento horizontal centralizado em relação ao marcador */
+                      max-w-[170px] sm:max-w-[210px] md:max-w-[240px]
+                      text-xs sm:text-sm
                       left-1/2 
-                      /* Posicionamento vertical (popup acima ou abaixo do marcador) */
-                      ${openPopupUpwards ? 'bottom-full mb-3' : 'top-full mt-3'}
+                      ${openPopupUpwards ? 'bottom-full mb-2' : 'top-full mt-2'}
                     `}
                     style={{ 
-                      animation: `${openPopupUpwards ? 'popupFadeInScaleUpFromBottom' : 'popupFadeInScaleUpBase'} 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards`
+                      animation: `${openPopupUpwards ? 'popupFadeInScaleUpFromBottom' : 'popupFadeInScaleUpBase'} 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards`,
+                      minWidth: '120px',
+                      wordBreak: 'break-word',
+                      maxWidth: '90vw',
                     }}
                   >
                     <button
@@ -136,13 +135,13 @@ export default function NearbyHotelsMapEnhanced() {
                       className="absolute top-2 right-2 text-slate-400 hover:text-sky-300 transition-colors"
                       aria-label="Fechar"
                     >
-                      <X size={18} />
+                      <X size={16} />
                     </button>
-                    <h3 className="text-base font-semibold text-sky-300 mb-1.5 pr-5">{hotel.name}</h3> {/* pr-5 para não encostar no X */}
+                    <h3 className="text-sm font-semibold text-sky-300 mb-1.5 pr-5">{hotel.name}</h3>
                     <p className="text-[11px] text-slate-300 mb-1 flex items-start">
                       <MapPin size={12} className="mr-1.5 mt-0.5 text-slate-400 shrink-0" /> {hotel.address}
                     </p>
-                    <div className="text-[11px] text-slate-300 mb-2 flex items-center">
+                    <div className="flex items-center mb-2">
                       <Star size={12} className="mr-1.5 text-yellow-400 fill-yellow-400" />
                       {hotel.rating.toFixed(1)}
                       <span className="text-slate-400 ml-2 text-[10px]">Preço: {hotel.priceRange}</span>
@@ -151,7 +150,7 @@ export default function NearbyHotelsMapEnhanced() {
                       href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel.name + ", " + hotel.address)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-xs bg-sky-500 hover:bg-sky-400 text-white font-semibold px-3 py-1.5 rounded-md transition-colors duration-200 shadow hover:shadow-md"
+                      className="inline-flex items-center text-xs bg-sky-500 hover:bg-sky-400 text-white font-semibold px-2 py-1 rounded-md transition-colors duration-200 shadow hover:shadow-md"
                     >
                       Ver no mapa <Info size={12} className="ml-1.5" />
                     </a>
