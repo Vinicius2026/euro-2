@@ -19,9 +19,12 @@ const BackgroundStyles = () => (
     }
 
     @keyframes particle-float {
-      0% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.7; }
-      50% { transform: translateY(-25px) translateX(15px) scale(1.1); opacity: 1; }
-      100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.7; }
+      0%   { transform: translateY(0px) translateX(0px) scale(0.8) rotate(0deg); opacity: 0.3; }
+      20%  { transform: translateY(-15px) translateX(10px) scale(1) rotate(10deg); opacity: 0.7; }
+      40%  { transform: translateY(-5px) translateX(-15px) scale(0.9) rotate(-5deg); opacity: 0.5; }
+      60%  { transform: translateY(-25px) translateX(5px) scale(1.1) rotate(5deg); opacity: 1; }
+      80%  { transform: translateY(-10px) translateX(-10px) scale(1) rotate(-10deg); opacity: 0.6; }
+      100% { transform: translateY(0px) translateX(0px) scale(0.8) rotate(0deg); opacity: 0.3; }
     }
 
     .particle {

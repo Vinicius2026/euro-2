@@ -74,10 +74,11 @@ const Index = () => {
         }
         
         @keyframes particle-float {
-          0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-          10% { opacity: 1; }
-          90% { opacity: 1; }
-          100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+          0%   { transform: translateY(0px) translateX(0px) scale(0.6); opacity: 0; }
+          25%  { transform: translateY(-25vh) translateX(3vw) scale(0.8); opacity: 0.7; }
+          50%  { transform: translateY(-50vh) translateX(-3vw) scale(1); opacity: 0.5; }
+          75%  { transform: translateY(-75vh) translateX(2vw) scale(0.8); opacity: 0.7; }
+          100% { transform: translateY(-100vh) translateX(0px) scale(0.6); opacity: 0; }
         }
         
         @keyframes grid-move {
@@ -105,9 +106,14 @@ const Index = () => {
           50% { opacity: 1; transform: scale(1.05); }
         }
         
+        @keyframes pulse-glow-card {
+          0%, 100% { box-shadow: 0 0 8px rgba(255,59,48,0.1), 0 0 12px rgba(255,59,48,0.05); opacity: 0.9; }
+          50% { box-shadow: 0 0 12px rgba(255,59,48,0.2), 0 0 20px rgba(255,59,48,0.1); opacity: 1; }
+        }
+        
         @keyframes float-gentle {
           0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
+          50% { transform: translateY(-15px); }
         }
         
         @keyframes shimmer {
@@ -197,8 +203,8 @@ const Index = () => {
         }
         
         @keyframes marquee-fast {
-          0% { transform: translateX(100%); }
-          100% { transform: translateX(-100%); }
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
         }
         
         @keyframes diagonal-move {
@@ -237,13 +243,14 @@ const Index = () => {
         .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
         .animate-float-reverse { animation: float-reverse 10s ease-in-out infinite; }
         .animate-float-fast { animation: float-fast 6s ease-in-out infinite; }
-        .animate-particle-float { animation: particle-float linear infinite; }
+        .animate-particle-float { animation: particle-float ease-in-out infinite; }
         .animate-grid-move { animation: grid-move 20s linear infinite; }
         .animate-light-ray-1 { animation: light-ray-1 4s ease-in-out infinite; }
         .animate-light-ray-2 { animation: light-ray-2 5s ease-in-out infinite; }
         .animate-light-ray-3 { animation: light-ray-3 3s ease-in-out infinite; }
         .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-        .animate-float-gentle { animation: float-gentle 4s ease-in-out infinite; }
+        .animate-float-gentle { animation: float-gentle 8s ease-in-out infinite; }
+        .animate-pulse-glow-card { animation: pulse-glow-card 3s ease-in-out infinite; }
         .animate-shimmer { animation: shimmer 3s ease-in-out infinite; }
         .animate-title-emerge { animation: title-emerge 1s ease-out; }
         .animate-slide-in-left { animation: slide-in-left 0.8s ease-out; }
@@ -261,7 +268,7 @@ const Index = () => {
         .animate-pulse-intense { animation: pulse-intense 2s ease-in-out infinite; }
         .animate-cta-pulse { animation: cta-pulse 2s ease-in-out infinite; }
         .animate-flash { animation: flash 0.3s ease-in-out; }
-        .animate-marquee-fast { animation: marquee-fast 20s linear infinite; }
+        .animate-marquee-fast { animation: marquee-fast 60s linear infinite; }
         .animate-diagonal-move { animation: diagonal-move 4s linear infinite; }
         .animate-bounce-gentle { animation: bounce-gentle 3s ease-in-out infinite; }
         .animate-cosmic-glow { animation: cosmic-glow 8s ease-in-out infinite; }
@@ -288,7 +295,7 @@ const Index = () => {
       `}</style>
 
       {/* HERO SECTION SÓBRIO E TECH COM ANIMAÇÃO DE BACKGROUND */}
-      <div className="min-h-screen w-full flex items-center justify-center relative overflow-hidden bg-black">
+      <div className="min-h-[80vh] md:min-h-[75vh] w-full flex items-center justify-center relative overflow-hidden bg-black">
         {/* Camadas de animação de fundo (orbs, partículas, etc.) */}
         <div className="absolute inset-0">
           {/* Camada 1: Gradiente Base */}
@@ -301,15 +308,15 @@ const Index = () => {
           </div>
           {/* Camada 3: Partículas Flutuantes */}
           <div className="absolute inset-0">
-            {[...Array(20)].map((_, i) => (
+            {[...Array(25)].map((_, i) => (
               <div
                 key={i}
-                className="absolute w-1 h-1 bg-red-400/60 rounded-full animate-particle-float"
+                className="absolute w-[0.1rem] h-[0.1rem] bg-red-400/40 rounded-full animate-particle-float"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 10}s`,
-                  animationDuration: `${10 + Math.random() * 20}s`
+                  animationDelay: `${Math.random() * 20}s`,
+                  animationDuration: `${20 + Math.random() * 25}s`
                 }}
               />
             ))}
@@ -325,13 +332,13 @@ const Index = () => {
         </div>
 
         {/* Conteúdo Principal */}
-        <div className="relative z-10 w-full max-w-xl mx-auto px-4 py-16 text-center flex flex-col items-center gap-8">
+        <div className="relative z-10 w-full max-w-xl mx-auto px-4 py-8 md:py-10 text-center flex flex-col items-center gap-3 md:gap-4">
           {/* Logo */}
-          <div className="mb-4">
+          <div className="mb-3">
             <img
               src="/lovable-uploads/logo.png"
               alt="Logo"
-              className="h-14 sm:h-24 w-auto mx-auto animate-float-gentle"
+              className="h-20 sm:h-32 w-auto mx-auto animate-float-gentle"
             />
           </div>
 
@@ -339,8 +346,8 @@ const Index = () => {
           <h1
             className="
               text-3xl sm:text-5xl lg:text-6xl
-              font-extrabold text-white mb-2
-              leading-tight tracking-tight lg:tracking-wider lg:mb-4
+              font-extrabold text-white mb-1 lg:mb-2
+              leading-tight tracking-tight lg:tracking-wider
               font-[Montserrat,sans-serif]
             "
           >
@@ -354,12 +361,12 @@ const Index = () => {
           </h1>
 
           {/* Subtítulo */}
-          <p className="text-base text-gray-400 mb-6">
+          <p className="text-sm text-gray-400 mb-4 leading-snug sm:w-3/4 mx-auto">
             (e como <span className="text-white font-semibold">você</span> pode copiar e colar, mesmo saindo do zero)
           </p>
 
           {/* Cards de Data/Hora padronizados e menores, com transparência e efeito especial no 'Ao Vivo' */}
-          <div className="flex justify-center gap-3 mb-8 flex-wrap">
+          <div className="flex justify-center gap-1 mb-4 flex-wrap">
             {[
               { icon: CalendarIcon, text: '10 de Junho', label: 'Data', transparent: true },
               { icon: ClockIcon, text: '20:03h', label: 'Hora', transparent: true },
@@ -368,26 +375,26 @@ const Index = () => {
               <div
                 key={i}
                 className={
-                  `flex flex-col items-center justify-center w-28 h-20 rounded-xl shadow-md transition-all duration-300 group border ` +
+                  `flex flex-col items-center justify-center w-20 h-[60px] rounded-md shadow-sm transition-all duration-300 group border transform hover:scale-105 ` +
                   (item.tvEffect
-                    ? 'bg-black/40 border-red-500/40 relative overflow-hidden' // TV effect box
-                    : 'bg-neutral-900/40 border-red-500/20') // Transparent boxes
+                    ? 'bg-black/25 border-red-500/25 relative overflow-hidden'
+                    : 'bg-neutral-900/25 border-red-500/10 animate-pulse-glow-card')
                 }
-                style={{ minWidth: 90, minHeight: 60 }}
+                style={{ minWidth: 70, minHeight: 40 }}
               >
-                <span className="mb-1" style={{ opacity: item.transparent ? 0.7 : 1 }}>
+                <span className="mb-0.5 scale-90" style={{ opacity: item.transparent ? 0.6 : 1 }}>
                   <item.icon />
                 </span>
                 <span
                   className={
-                    `text-[0.95rem] font-semibold mb-0.5 ` +
+                    `text-[0.7rem] font-semibold ` +
                     (item.tvEffect ? 'text-red-400 ao-vivo-flicker' : 'text-white')
                   }
-                  style={{ opacity: item.transparent ? 0.7 : 1 }}
+                  style={{ opacity: item.transparent ? 0.6 : 1 }}
                 >
                   {item.text}
                 </span>
-                <span className="text-[0.65rem] text-gray-400 tracking-wide" style={{ opacity: item.transparent ? 0.6 : 1 }}>{item.label}</span>
+                <span className="text-[0.5rem] text-gray-400/70 tracking-tight" style={{ opacity: item.transparent ? 0.5 : 1 }}>{item.label}</span>
                 {/* Efeito TV minimalista */}
                 {item.tvEffect && (
                   <>
@@ -406,24 +413,30 @@ const Index = () => {
           </div>
 
           {/* Botões de Login e Cadastro */}
-          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center mb-8">
+          <div className="flex flex-row gap-3 justify-center mb-8">
             <button
               onClick={() => navigate('/login')}
-              className="w-full sm:w-auto bg-black/60 backdrop-blur-md border border-white/20 hover:border-white/40 text-white font-semibold text-lg px-8 py-3 rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors font-[Inter,sans-serif]"
-              style={{ fontFamily: 'Inter, Montserrat, sans-serif', fontWeight: 600 }}
+              className="bg-gradient-to-br from-neutral-800 to-neutral-900 backdrop-blur-md border border-neutral-700 hover:border-neutral-500 text-white font-semibold text-base px-6 py-2 rounded-lg shadow-xl hover:shadow-red-500/20 focus:outline-none focus:ring-2 focus:ring-red-500/50 transition-all duration-300 ease-in-out transform hover:scale-105"
+              style={{ fontFamily: 'Montserrat, Inter, sans-serif', fontWeight: 600 }}
             >
               Login
             </button>
             <button
               onClick={() => navigate('/register')}
-              className="w-full sm:w-auto relative border border-white/20 hover:border-white/40 text-white font-semibold text-lg px-8 py-3 rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors font-[Inter,sans-serif] overflow-hidden"
-              style={{ fontFamily: 'Inter, Montserrat, sans-serif', fontWeight: 600, background: 'transparent' }}
+              className="relative border border-red-500/50 hover:border-red-400 text-white font-semibold text-base px-6 py-2 rounded-lg shadow-xl hover:shadow-red-500/30 focus:outline-none focus:ring-2 focus:ring-red-400/60 transition-all duration-300 ease-in-out transform hover:scale-105 overflow-hidden group"
+              style={{ fontFamily: 'Montserrat, Inter, sans-serif', fontWeight: 600, background: 'transparent' }}
             >
               <span className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{
-                background: 'radial-gradient(ellipse at 60% 40%, rgba(255,59,48,0.18) 0%, rgba(136,58,255,0.13) 60%, transparent 100%)',
+                background: 'radial-gradient(ellipse at 60% 40%, rgba(255,59,48,0.25) 0%, rgba(220,38,38,0.15) 60%, transparent 100%)',
                 zIndex: 0,
                 borderRadius: 'inherit',
-                opacity: 1
+                opacity: 1,
+                transition: 'opacity 0.3s ease-in-out'
+              }} />
+              <span className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out" aria-hidden="true" style={{
+                background: 'radial-gradient(ellipse at 50% 50%, rgba(255,80,80,0.35) 0%, rgba(200,30,30,0.05) 70%, transparent 100%)',
+                zIndex: 0,
+                borderRadius: 'inherit'
               }} />
               <span className="relative z-10">Cadastro</span>
             </button>
@@ -432,12 +445,32 @@ const Index = () => {
       </div>
 
       {/* Marquee HIPNOTIZANTE */}
-      <div className="relative bg-gradient-to-r from-red-600 via-red-500 to-red-600 py-6 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_25%,rgba(255,255,255,0.1)_50%,transparent_50%,transparent_75%,rgba(255,255,255,0.1)_75%)] bg-[length:20px_20px] animate-diagonal-move"></div>
-        <div className="animate-marquee-fast whitespace-nowrap">
-          <span className="text-2xl font-black text-white mx-12 animate-text-glow">
-            DO REAL AO EURO  PEDRO BERTOTTO  MERCADO EUROPEU  €1.000 DIÁRIOS  OPORTUNIDADE ÚNICA  
-          </span>
+      <div className="relative bg-neutral-950/80 backdrop-blur-md py-3 sm:py-4 overflow-hidden border-y-2 border-red-500/40 shadow-lg">
+        <div className="flex animate-marquee-fast whitespace-nowrap group">
+          {[...Array(2)].map((_, setIndex) => (
+            <React.Fragment key={setIndex}>
+              <span className="flex items-center text-lg sm:text-xl font-bold text-red-400 mx-6 sm:mx-8 group-hover:pause-animation animate-text-glow">
+                <svg viewBox="0 0 8 8" fill="currentColor" className="w-2.5 h-2.5 mr-2.5 opacity-80 text-red-500"><circle cx="4" cy="4" r="4"/></svg>
+                DO REAL AO EURO
+              </span>
+              <span className="flex items-center text-lg sm:text-xl font-medium text-gray-300 mx-6 sm:mx-8 group-hover:pause-animation">
+                <svg viewBox="0 0 8 8" fill="currentColor" className="w-2.5 h-2.5 mr-2.5 text-red-500/60 opacity-80"><circle cx="4" cy="4" r="4"/></svg>
+                PEDRO BERTOTTO
+              </span>
+              <span className="flex items-center text-lg sm:text-xl font-bold text-red-400 mx-6 sm:mx-8 group-hover:pause-animation animate-text-glow">
+                <svg viewBox="0 0 8 8" fill="currentColor" className="w-2.5 h-2.5 mr-2.5 opacity-80 text-red-500"><circle cx="4" cy="4" r="4"/></svg>
+                MERCADO EUROPEU
+              </span>
+              <span className="flex items-center text-lg sm:text-xl font-medium text-gray-300 mx-6 sm:mx-8 group-hover:pause-animation">
+                <svg viewBox="0 0 8 8" fill="currentColor" className="w-2.5 h-2.5 mr-2.5 text-red-500/60 opacity-80"><circle cx="4" cy="4" r="4"/></svg>
+                €1.000 DIÁRIOS
+              </span>
+              <span className="flex items-center text-lg sm:text-xl font-bold text-red-400 mx-6 sm:mx-8 group-hover:pause-animation animate-text-glow">
+                <svg viewBox="0 0 8 8" fill="currentColor" className="w-2.5 h-2.5 mr-2.5 opacity-80 text-red-500"><circle cx="4" cy="4" r="4"/></svg>
+                OPORTUNIDADE ÚNICA
+              </span>
+            </React.Fragment>
+          ))}
         </div>
       </div>
 
